@@ -1,11 +1,7 @@
-var io = require('socket.io-client');
+var events = require("./server/io.js");
 
 var sConnection = function(addr) {
-	var socket = io.connect(addr, {reconnect: true});
-
-	socket.on('connect', function(socket) { 
-	  console.log('Connected!');
-	});
+	new events(addr);
 }
 
 module.exports = sConnection;
