@@ -18,10 +18,14 @@ var IO = function(addr) {
 		fct = fct || function(){};
 		eventReciever.listen(socket, variable, fct);
 	}
-	this.addModule = function(module) {
+	this.addModule = function(module, fct) {
+		fct = fct || function(){};
 		if(module) {
 			var moduleLib = require("./modules/"+module);
 			modules[module] = new moduleLib(this);
+			fct();
+		} else {
+			console.log("Can't find module "+module);
 		}
 	}
 }

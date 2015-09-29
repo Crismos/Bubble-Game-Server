@@ -18,8 +18,9 @@ var moduleLoader = function(IO) {
 
 		for(var key in modules) {
 			var module = modules[key].replace(".js", "");
-			IO.addModule(module);
-			console.log(module+" loaded");
+			IO.addModule(module, function() {
+				console.log(module+" loaded");
+			});
 		}
 	}
 }
