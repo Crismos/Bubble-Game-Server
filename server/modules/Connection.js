@@ -1,12 +1,12 @@
 
 var Connection = function(IO) {
-	IO.eventListener("connect", function() {
+	IO.bind("connect", function() {
 		console.log("connected !");
 	});
 
-	IO.eventListener("bonjour", function(o) {
+	IO.bind("bonjour", function(o) {
 		console.log(o.content);
-		IO.callEmitter("reponse", {content: "salut copain server !"});
+		IO.emit("reponse", {content: "salut copain server !"});
 	});
 }
 

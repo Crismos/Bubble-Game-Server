@@ -11,10 +11,10 @@ var IO = function(addr) {
 	var eventEmitter = new EventEmitter(this);
 	var eventReciever = new EventReciever(this);
 
-	this.callEmitter = function(variable, object) {
+	this.emit = function(variable, object) {
 		eventEmitter.emit(socket, variable, object);
 	}
-	this.eventListener = function(variable, fct) {
+	this.bind = function(variable, fct) {
 		fct = fct || function(){};
 		eventReciever.listen(socket, variable, fct);
 	}
