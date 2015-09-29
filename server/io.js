@@ -5,12 +5,25 @@ var EventReciever = require("./ServerEventReciever");
 var io = require('socket.io-client');
 
 var IO = function(addr) {
-	this.socket = io.connect(addr, {reconnect: true});
-	this.io = io;
+	var modules = {};
+	var socket = io.connect(addr, {reconnect: true});
 
-	this.eventEmitter = new EventEmitter(this);
-	this.eventReciever = new EventReciever(this);
+	var eventEmitter = new EventEmitter(this);
+	var eventReciever = new EventReciever(this);
 
+	this.callEmitter = function(variable, object) {
+		eventEmitter.emit(socket, variable, object);
+	}
+	this.eventListener = function(variable, fct) {
+		fct = fct || function(){};
+		eventReciever.listen(socket, variable, fct);
+	}
+	this.addModule = function(module) {
+		if(module) {
+			var moduleLib = require("./modules/"+module);
+			modules[module] = new moduleLib(this);
+		}
+	}
 }
 
 module.exports = IO;

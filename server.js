@@ -11,7 +11,7 @@ var clientIO = require("./clients/io");
 * CONFIG
 */
 // adress of connection server 
-var serverConnectionAdress = "http://localhost:3000";
+var serverConnectionAdress = "http://localhost:4000";
 // this port will be used to permit the connection of the client
 var gameServerPort = "8000";
 
@@ -20,5 +20,6 @@ var gameServerPort = "8000";
 */
 // connection to the connection server
 var serverConnection = new serverIO(serverConnectionAdress);
+serverConnection.addModule("Connection");
 // interactions with clients
 var clientConnection = new clientIO(gameServerPort);

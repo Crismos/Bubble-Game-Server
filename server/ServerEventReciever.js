@@ -1,9 +1,9 @@
 "use strict"
 
-var serverEventReciever = function(connection) {
-	connection.socket.on('connect', function(socket) { 
-	  	console.log('Connected!');
-	});
+var serverEventReciever = function() {
+	this.listen = function(socket, variable, fct) {
+		socket.on(variable, fct);
+	}
 }
 
 module.exports = serverEventReciever;
