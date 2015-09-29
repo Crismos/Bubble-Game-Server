@@ -6,7 +6,18 @@
 // modules
 var serverIO = require("./server/io");
 var clientIO = require("./clients/io");
+var fs = require('fs');
+var path = require('path');
 
+function getDirectories(srcpath) {
+  return fs.readdirSync(srcpath).filter(function(file) {
+    return fs.statSync(path.join(srcpath, file));
+  });
+}
+
+modulesServer = getDirectories("server/modules");
+console.log("Loading server modules...");
+//modulesClient = getDirectories("clients/modules");
 /*
 * CONFIG
 */
@@ -20,6 +31,11 @@ var gameServerPort = "8000";
 */
 // connection to the connection server
 var serverConnection = new serverIO(serverConnectionAdress);
-serverConnection.addModule("Connection");
+for(key in modulesServer) {
+	var module = modulesServer[key].replace(".js", "");
+	serverConnection.addModule(module);
+	console.log(module+" loaded");
+}
+
 // interactions with clients
 var clientConnection = new clientIO(gameServerPort);
