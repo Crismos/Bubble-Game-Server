@@ -27,3 +27,5 @@ loader.load("server/modules");
 
 // interactions with clients
 var clientConnection = new clientIO(gameServerPort);
+var loader = new ModuleLoader(clientConnection);
+loader.load("clients/modules");
