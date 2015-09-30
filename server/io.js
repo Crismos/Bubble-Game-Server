@@ -5,7 +5,7 @@ var EventReciever = require("./ServerEventReciever");
 var io = require('socket.io-client');
 
 var IO = function(config) {
-	var prefix = "[::blue::Server/IO::white::]";
+	var prefix = "::cyan::[Server/IO]::white::";
 	var modules = {};
 	var socket = io.connect("http://"+config["server.address"]+":"+config["server.port"], {reconnect: true});
 	var key;

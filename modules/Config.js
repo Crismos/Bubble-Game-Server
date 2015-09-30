@@ -1,6 +1,6 @@
 
 var Config = function(callback) {
-	var prefix = "[::green::Config::white::] ";
+	var prefix = "::green::[Config]::white:: ";
 	console.log("Loading config...",prefix);
 	callback = callback || function(){};
 
