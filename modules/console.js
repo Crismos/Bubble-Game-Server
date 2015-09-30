@@ -36,7 +36,7 @@ console.log=(function() {
     try {
       var tmp=process.stdout;
       process.stdout=process.stderr;
-      arguments[0] = changeString(arguments[1]+arguments[0]);
+      arguments[0] = changeString((arguments[1]||"")+arguments[0]);
       arguments[1] = "";
       orig.apply(console, arguments);
     } finally {
