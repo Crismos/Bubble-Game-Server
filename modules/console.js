@@ -9,6 +9,8 @@ var getColor = function(string) {
   colors.cyan = "\x1b[36m";
   colors.white = "\x1b[37m";
 
+  colors.Reset = "\x1b[0m"
+
   return colors[string];
 }
 
@@ -26,7 +28,7 @@ var changeString = function(string) {
     }
     i++;
   }
-  return finale+getColor("white");
+  return finale+getColor("Reset");
 }
 
 
