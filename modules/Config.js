@@ -1,5 +1,7 @@
 
 var Config = function(IO, callback) {
+	var prefix = "[Config] ";
+	console.log(prefix+"Loading config...");
 	callback = callback || function(){};
 
 	var fs = require('fs');
@@ -15,6 +17,7 @@ var Config = function(IO, callback) {
 			if(tmp[key] != "")
 				config[tmp[key].split(" = ")[0]] = tmp[key].split(" = ")[1];
 		}
+		console.log(prefix+"Config loaded!");
 		callback(config);
 	}
 

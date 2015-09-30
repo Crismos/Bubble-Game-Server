@@ -4,10 +4,11 @@ var EventEmitter = require("./ServerEventEmitter");
 var EventReciever = require("./ServerEventReciever");
 var io = require('socket.io-client');
 
-var IO = function(addr) {
+var IO = function(config) {
 	var modules = {};
-	var socket = io.connect(addr, {reconnect: true});
+	var socket = io.connect("http://"+config["server.address"]+":"+config["server.port"], {reconnect: true});
 	var key;
+	var config = config;
 
 	var eventEmitter = new EventEmitter(this);
 	var eventReciever = new EventReciever(this);
@@ -23,8 +24,7 @@ var IO = function(addr) {
 		fct = fct || function(){};
 		if(module) {
 			var moduleLib = require("./modules/"+module);
-			modules[module] = new moduleLib(this);
-			fct();
+			modules[module] = new moduleLib(this,fct);
 		} else {
 			console.log("Can't find module "+module);
 		}
@@ -34,6 +34,9 @@ var IO = function(addr) {
 	}
 	this.setKey = function(k) {
 		key = k;
+	}
+	this.getConfig = function() {
+		return config;
 	}
 }
 

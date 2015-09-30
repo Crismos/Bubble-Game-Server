@@ -13,7 +13,7 @@ var moduleLoader = function(IO) {
 	}
 
 	this.load = function(srcpath) {
-		var prefix = "["+srcpath+"] ";
+		var prefix = "["+srcpath+" > modules] ";
 		var path = srcpath+"/modules";
 		console.log(prefix+"Loading modules for "+srcpath+"...");
 		var modules = getDirectories(path);

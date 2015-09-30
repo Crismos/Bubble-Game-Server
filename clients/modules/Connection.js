@@ -1,6 +1,6 @@
 
-var Connection = function(IO) {
-
+var Connection = function(IO, callback) {
+	callback = callback ||function(){};
 	var sockets = {};
 
 	IO.bind("connection", function(soc) {
@@ -18,9 +18,10 @@ var Connection = function(IO) {
 			modules[key].event(soc);
 		}
 	});
+	callback();
 
 	this.event = function(socket) {
-		
+
 	}
 
 	this.getSockets = function() {

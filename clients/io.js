@@ -3,11 +3,11 @@
 var EventEmitter = require("./ClientEventEmitter");
 var EventReciever = require("./ClientEventReciever");
 
-var IO = function(port) {
+var IO = function(config) {
 	var modules = {};
 
-	var io = require("socket.io")(port);
-	console.log("Listening port "+port);
+	var io = require("socket.io")(config["game.port"]);
+	console.log("[clients] Listening port "+config["game.port"]);
 
 	var eventEmitter = new EventEmitter(this);
 	var eventReciever = new EventReciever(this);
@@ -27,8 +27,7 @@ var IO = function(port) {
 		fct = fct || function(){};
 		if(module) {
 			var moduleLib = require("./modules/"+module);
-			modules[module] = new moduleLib(this);
-			fct();
+			modules[module] = new moduleLib(this, fct);
 		} else {
 			console.log("Can't find module "+module);
 		}
