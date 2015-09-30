@@ -16,12 +16,13 @@ function getDirectories(srcpath) {
 }
 
 modulesServer = getDirectories("server/modules");
+console.log(modulesServer);
 console.log("Loading server modules...");
 //modulesClient = getDirectories("clients/modules");
 /*
 * CONFIG
 */
-// adress of connection server 
+// adress of connection server
 var serverConnectionAdress = "http://localhost:4000";
 // this port will be used to permit the connection of the client
 var gameServerPort = "8000";
