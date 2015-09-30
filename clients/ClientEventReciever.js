@@ -1,13 +1,9 @@
 "use strict"
 
 var clientEventReciever = function(socketio) {
-
-	socketio.io.on('connection', function (socket) {
-		console.log("user connected");
-  		socket.on('disconnect', function () {
-	    	socketio.io.emit('user disconnected');
-	  	});
-	});
+	this.listen = function(socket, variable, fct) {
+		socket.on(variable, fct);
+	}
 }
 
 module.exports = clientEventReciever;

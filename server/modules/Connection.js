@@ -1,13 +1,19 @@
 
-var Connection = function(IO) {
+var Connection = function(IO, callback) {
+	callback = callback ||function(){};
+	var prefix = "::cyan::[ConnectionServer]::white::";
+
 	IO.bind("connect", function() {
-		console.log("connected !");
+		console.log("connected",prefix);
+		IO.emit("gameConfig", IO.getConfig());
 	});
 
-	IO.bind("bonjour", function(o) {
-		console.log(o.content);
-		IO.emit("reponse", {content: "salut copain server !"});
+	IO.bind("Validation", function(o) {
+		console.log("identified with key ::green::"+o.id,prefix);
+		IO.setKey(o.id);
 	});
+
+	callback();
 }
 
 module.exports = Connection;
