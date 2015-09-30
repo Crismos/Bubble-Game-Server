@@ -7,25 +7,20 @@
 var serverIO = require("./server/io");
 var clientIO = require("./clients/io");
 var ModuleLoader = require("./moduleLoader");
+var Config = require("./server/modules/Config");
 
-/*
-* CONFIG
-*/
-// adress of connection server 
-var serverConnectionAdress = "http://localhost:4000";
-// this port will be used to permit the connection of the client
-var gameServerPort = "8000";
-
-/*
-* RUNNING SERVER
-*/
-// connection to the connection server
-var serverConnection = new serverIO(serverConnectionAdress);
-var loader = new ModuleLoader(serverConnection);
-loader.load("server");
+var cfg = new Config(null, function(config) {
+	var serverConnectionAdress = "http://"+config["server.address"]+":"+config["server.port"];
+	var gameServerPort = config["game.port"];
 
 
-// interactions with clients
-var clientConnection = new clientIO(gameServerPort);
-var loader = new ModuleLoader(clientConnection);
-loader.load("clients");
+	var serverConnection = new serverIO(serverConnectionAdress);
+	var loader = new ModuleLoader(serverConnection);
+	loader.load("server");
+
+	var clientConnection = new clientIO(gameServerPort);
+	var loader = new ModuleLoader(clientConnection);
+	loader.load("clients");
+
+});
+

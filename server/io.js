@@ -7,6 +7,7 @@ var io = require('socket.io-client');
 var IO = function(addr) {
 	var modules = {};
 	var socket = io.connect(addr, {reconnect: true});
+	var key;
 
 	var eventEmitter = new EventEmitter(this);
 	var eventReciever = new EventReciever(this);
@@ -27,6 +28,12 @@ var IO = function(addr) {
 		} else {
 			console.log("Can't find module "+module);
 		}
+	}
+	this.getModules = function() {
+		return modules;
+	}
+	this.setKey = function(k) {
+		key = k;
 	}
 }
 
