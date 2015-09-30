@@ -9,7 +9,7 @@ var clientIO = require("./clients/io");
 var ModuleLoader = require("./modules/moduleLoader");
 var Config = require("./modules/Config");
 
-var cfg = new Config(null, function(config) {
+var cfg = new Config(function(config) {
 	var serverConnection = new serverIO(config);
 	var loader = new ModuleLoader(serverConnection);
 	loader.load("server");

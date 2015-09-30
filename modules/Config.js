@@ -1,5 +1,5 @@
 
-var Config = function(IO, callback) {
+var Config = function(callback) {
 	var prefix = "[Config] ";
 	console.log(prefix+"Loading config...");
 	callback = callback || function(){};
