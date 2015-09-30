@@ -13,15 +13,15 @@ var moduleLoader = function(IO) {
 	}
 
 	this.load = function(srcpath) {
-		var prefix = "["+srcpath+" > modules] ";
+		var prefix = "[::green::"+srcpath+">modules::white::]";
 		var path = srcpath+"/modules";
-		console.log(prefix+"Loading modules for "+srcpath+"...");
+		console.log("Loading modules for "+srcpath+"...",prefix);
 		var modules = getDirectories(path);
 
 		for(var key in modules) {
 			var module = modules[key].replace(".js", "");
 			IO.addModule(module, function() {
-				console.log(prefix+module+" loaded");
+				console.log(module+" loaded",prefix);
 			});
 		}
 	}

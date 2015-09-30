@@ -5,6 +5,7 @@ var EventReciever = require("./ServerEventReciever");
 var io = require('socket.io-client');
 
 var IO = function(config) {
+	var prefix = "[::blue::Server/IO::white::]";
 	var modules = {};
 	var socket = io.connect("http://"+config["server.address"]+":"+config["server.port"], {reconnect: true});
 	var key;
@@ -26,7 +27,7 @@ var IO = function(config) {
 			var moduleLib = require("./modules/"+module);
 			modules[module] = new moduleLib(this,fct);
 		} else {
-			console.log("Can't find module "+module);
+			console.log("Can't find module "+module,prefix);
 		}
 	}
 	this.getModules = function() {

@@ -4,6 +4,7 @@
 *
 */
 // modules
+var console = require("./modules/console.js");
 var serverIO = require("./server/io");
 var clientIO = require("./clients/io");
 var ModuleLoader = require("./modules/moduleLoader");
