@@ -33,9 +33,6 @@ var IO = function(config) {
 	this.getModules = function() {
 		return modules;
 	}
-	this.setKey = function(k) {
-		key = k;
-	}
 	this.getConfig = function() {
 		return config;
 	}

@@ -9,8 +9,7 @@ var Connection = function(IO, callback) {
 	});
 
 	IO.bind("Validation", function(o) {
-		console.log("identified with key ::green::"+o.id,prefix);
-		IO.setKey(o.id);
+		console.log("identified with key ::green::"+o.key,prefix);
 	});
 
 	callback();
