@@ -22,10 +22,10 @@ var gameServerPort = "8000";
 // connection to the connection server
 var serverConnection = new serverIO(serverConnectionAdress);
 var loader = new ModuleLoader(serverConnection);
-loader.load("server/modules");
+loader.load("server");
 
 
 // interactions with clients
 var clientConnection = new clientIO(gameServerPort);
 var loader = new ModuleLoader(clientConnection);
-loader.load("clients/modules");
+loader.load("clients");

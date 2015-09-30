@@ -7,19 +7,21 @@ var moduleLoader = function(IO) {
 	this.IO = IO;
 
 	function getDirectories(srcpath) {
-	  return fs.readdirSync(srcpath).filter(function(file) {
-	    return fs.statSync(path.join(srcpath, file));
-	  });
+	  	return fs.readdirSync(srcpath).filter(function(file) {
+	    	return fs.statSync(path.join(srcpath, file));
+	  	});
 	}
 
 	this.load = function(srcpath) {
-		console.log("Loading modules for "+srcpath+"...");
-		var modules = getDirectories(srcpath);
+		var prefix = "["+srcpath+"] ";
+		var path = srcpath+"/modules";
+		console.log(prefix+"Loading modules for "+srcpath+"...");
+		var modules = getDirectories(path);
 
 		for(var key in modules) {
 			var module = modules[key].replace(".js", "");
 			IO.addModule(module, function() {
-				console.log(module+" loaded");
+				console.log(prefix+module+" loaded");
 			});
 		}
 	}
