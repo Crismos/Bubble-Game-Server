@@ -1,4 +1,4 @@
-
+"use strict"
 var Connection = function(IO, callback) {
 	callback = callback ||function(){};
 	var prefix = "::cyan::[ConnectionServer]::white::";
