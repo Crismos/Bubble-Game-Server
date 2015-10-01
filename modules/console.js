@@ -1,3 +1,9 @@
+var readline = require('readline');
+var rl = readline.createInterface(process.stdin, process.stdout);
+var Command = require("./Command");
+
+var cmd = Command.get();
+
 var getColor = function(string) {
   colors = {};
   colors.black = "\x1b[30m";
@@ -31,6 +37,11 @@ var changeString = function(string) {
   return finale+getColor("Reset");
 }
 
+var prompt = function() {
+  rl.setPrompt('admin> ');
+  rl.prompt();
+}
+
 
 console.log=(function() {
   var orig=console.log;
@@ -40,11 +51,20 @@ console.log=(function() {
       process.stdout=process.stderr;
       arguments[0] = changeString((arguments[1]||"")+arguments[0]);
       arguments[1] = "";
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
       orig.apply(console, arguments);
+      prompt();
     } finally {
       process.stdout=tmp;
     }
   };
 })(); 
+
+rl.on('line', function(line) {
+    cmd.execute(line);
+}).on('close',function(){
+    process.exit(0);
+});
 
 module.exports = console;

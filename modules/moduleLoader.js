@@ -12,7 +12,7 @@ var moduleLoader = function(IO) {
 	  	});
 	}
 
-	this.load = function(srcpath) {
+	this.load = function(srcpath, callback) {
 		var prefix = "::green::[::yellow::"+srcpath+"::green::>modules]::white::";
 		var path = srcpath+"/modules";
 		console.log("Loading modules for "+srcpath+"...",prefix);
@@ -24,6 +24,9 @@ var moduleLoader = function(IO) {
 				console.log(module+" loaded",prefix);
 			});
 		}
+
+		callback = callback || function() {};
+		callback();
 	}
 }
 

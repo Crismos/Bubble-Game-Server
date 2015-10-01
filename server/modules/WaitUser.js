@@ -1,7 +1,7 @@
-var NewUser = function(IO, callback) {
-	var prefix = "::cyan::[Server/userInc]::white::";
+var WaitUser = function(IO, callback) {
+	var prefix = "::cyan::[Server/waitingUser]::white::";
 	callback = callback ||function(){};
-	callback();
+	
 
 	IO.bind("newUserInc", function(o) {
 		console.log(o.key+" > "+IO.getConfig()["game.key"]);
@@ -10,4 +10,4 @@ var NewUser = function(IO, callback) {
 		}
 	});
 }
-module.exports = NewUser;
+module.exports = WaitUser;
