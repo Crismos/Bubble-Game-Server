@@ -21,6 +21,22 @@ var Command = function() {
 		default: {
 			process: function(o){cmdNotFound(o[0]);},
 			example: ""
+		},
+		module: {
+			process: function(o) {
+				if(o[1] == "clients" || o[1] == "server") {
+					var modules = require("./../"+o[1]+"/io").getIO().getModules();
+					var txt = Object.keys(modules).length+" Modules founded :";
+					for(key in modules) {
+						txt += "   ::green::"+key;
+					}
+					console.log(txt);
+				} else {
+					console.log("::red::Can't find module for "+o[1]);
+				}
+			},
+			description: "Find all module loaded for IO",
+			example: "module clients"
 		}
 	};
 
