@@ -32,7 +32,7 @@ var Command = function() {
 					}
 					console.log(txt);
 				} else {
-					console.log("::red::Can't find module for "+o[1]);
+					console.log("::red::Can't find modules for "+o[1]+" try with clients or server");
 				}
 			},
 			description: "Find all module loaded for IO",
