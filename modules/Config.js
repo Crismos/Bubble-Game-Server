@@ -11,6 +11,11 @@ var Config = function(callback) {
 	function keygen() {
 		return Math.random().toString(36);
 	}
+	function portGen(min, max) {
+		min = parseInt(min);
+		max = parseInt(max);
+		return Math.floor(Math.random()*(max-min))+min;
+	}
 	function read(err, data) {
 		if (err) {
 	    	return console.log(err,prefix);
@@ -22,6 +27,7 @@ var Config = function(callback) {
 		}
 		console.log("Config loaded!",prefix);
 		config["game.key"] = keygen();
+		config["game.port"] = portGen(config["game.minPort"], config["game.maxPort"]);
 		callback(config);
 	}
 
