@@ -11,11 +11,11 @@ var ModuleLoader = require("./modules/moduleLoader");
 var Config = require("./modules/Config");
 
 var cfg = new Config(function(config) {
-	var serverConnection = new serverIO(config);
+	var serverConnection = serverIO.getIO(config);
 	var loader = new ModuleLoader(serverConnection);
 	loader.load("server");
 
-	var clientConnection = new clientIO(config);
+	var clientConnection = clientIO.getIO(config);
 	var loader = new ModuleLoader(clientConnection);
 	loader.load("clients");
 

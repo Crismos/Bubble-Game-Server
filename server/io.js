@@ -38,4 +38,24 @@ var IO = function(config) {
 	}
 }
 
-module.exports = IO;
+var IOsingleton = (function() {
+	var sio;
+
+	function createInstance(config) {
+		var obj = new IO(config);
+		return obj;
+
+	}
+	return {
+		getIO: function(config) {
+			if(!sio) {
+				if(config) {
+					sio = createInstance(config);
+				}
+			}
+			return sio;
+		}
+	}
+})();
+
+module.exports = IOsingleton;
