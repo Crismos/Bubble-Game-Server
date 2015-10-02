@@ -28,6 +28,7 @@ var Config = function(callback) {
 		console.log("Config loaded!",prefix);
 		config["game.key"] = keygen();
 		config["game.port"] = portGen(config["game.minPort"], config["game.maxPort"]);
+		config["game.current"] = 0;
 		callback(config);
 	}
 

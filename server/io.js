@@ -5,15 +5,12 @@ var EventReciever = require("./ServerEventReciever");
 var io = require('socket.io-client');
 
 var IO = function(config) {
-	for(key in config) {
-		console.log(key+" : "+config[key]);
-	}
 	var prefix = "::cyan::[Server/IO]::white::";
 	var modules = {};
-	var socket = io.connect("http://"+config["server.address"]+":"+config["server.port"], {reconnect: true});
+	var socket = io.connect("ws://"+config["server.address"]+":"+config["server.port"], {reconnect: true});
 	var key;
 	var config = config;
-	console.log("Waiting connection server at ::green::"+"http://"+config["server.address"]+":"+config["server.port"], prefix);
+	console.log("Waiting connection server at ::green::"+"ws://"+config["server.address"]+":"+config["server.port"], prefix);
 
 	var eventEmitter = new EventEmitter(this);
 	var eventReciever = new EventReciever(this);
@@ -57,7 +54,6 @@ var IOsingleton = (function() {
 					sio = createInstance(config);
 				}
 			}
-			console.log("call me maybe " + (config["server.port"] || ""));
 			return sio;
 		}
 	}

@@ -10,6 +10,8 @@ var IO = function(config) {
 	var io = require("socket.io")(config["game.port"]);
 	console.log("Listening port "+config["game.port"],prefix);
 
+	var place = parseInt(config["game.maxPlayer"]);
+
 	var eventEmitter = new EventEmitter(this);
 	var eventReciever = new EventReciever(this);
 
@@ -39,6 +41,17 @@ var IO = function(config) {
 	this.getModules = function() {
 		return modules;
 	}
+	this.getPlace = function() {
+		return Object.keys(modules["Logging"].getUsers()).length;
+	}
+	this.isFull = function() {
+		var nbPlayer = this.getPlace();
+
+		if(nbPlayer >= place)
+			return true;
+		return false;
+	}
+
 }
 
 var IOsingleton = (function() {

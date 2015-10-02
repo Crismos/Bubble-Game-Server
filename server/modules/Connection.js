@@ -6,6 +6,7 @@ var Connection = function(IO, callback) {
 	IO.bind("connect", function() {
 		console.log("connected",prefix);
 		IO.emit("gameConfig", IO.getConfig());
+		IO.getModules()["Infos"].sendNbPlace();
 	});
 
 	IO.bind("Validation", function(o) {
